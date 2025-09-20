@@ -1,0 +1,42 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+repositories {
+    mavenCentral()
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        name = "jitpack.io"
+        url = "https://jitpack.io"
+    }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:$paperVersion"
+    compileOnly "com.google.inject:guice:$guiceVersion"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+def targetJavaVersion = 21
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
