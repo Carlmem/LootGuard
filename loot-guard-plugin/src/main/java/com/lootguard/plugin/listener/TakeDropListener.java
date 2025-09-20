@@ -1,5 +1,6 @@
 package com.lootguard.plugin.listener;
 
+import com.lootguard.plugin.model.ConfigDto;
 import com.lootguard.plugin.repository.loot.LootOwnerRepository;
 import com.google.inject.Inject;
 import com.rampagemc.ramplagelibrary.event.annotation.EventListener;
@@ -12,17 +13,20 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class TakeDropListener implements Listener {
 
+    private final ConfigDto configDto;
+
     private final LootOwnerRepository lootOwnerRepository;
 
     @EventHandler
     public void onTakeDrop(EntityPickupItemEvent event) {
-        final var entityId = event.getEntity().getUniqueId();
+        final var entity = event.getEntity();
+        final var entityId = entity.getUniqueId();
         final var itemId = event.getItem().getUniqueId();
         if (!this.lootOwnerRepository.hasOwner(itemId)) {
             return;
         }
 
-        if (!this.lootOwnerRepository.isOwner(itemId, entityId)) {
+        if (!this.lootOwnerRepository.isOwner(itemId, entityId) && !entity.hasPermission(this.configDto.getLootPermission())) {
             event.setCancelled(true);
             return;
         }
