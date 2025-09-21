@@ -13,4 +13,6 @@ public class ConfigDto {
     private int protectedTime;
 
     private String lootPermission;
+
+    private boolean glowing;
 }

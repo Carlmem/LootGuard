@@ -1,9 +1,12 @@
 package com.lootguard.plugin.service.loot.handler;
 
+import com.lootguard.plugin.model.ConfigDto;
 import com.lootguard.plugin.model.LootDivisionDto;
 import com.lootguard.plugin.repository.loot.LootOwnerRepository;
 import com.google.inject.Inject;
+import com.lootguard.plugin.service.glowing.EntityGlowingService;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,7 +19,11 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class GearLootDropHandler implements LootDropHandler {
 
+    private final ConfigDto configDto;
+
     private final LootOwnerRepository lootOwnerRepository;
+
+    private final EntityGlowingService entityGlowingService;
 
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
@@ -45,6 +52,10 @@ public class GearLootDropHandler implements LootDropHandler {
             final var item = world.dropItemNaturally(location, itemStackClone);
             final var itemId = item.getUniqueId();
             this.lootOwnerRepository.add(itemId, uuid);
+
+            if (this.configDto.isGlowing()) {
+                this.entityGlowingService.glow(Bukkit.getPlayer(uuid), item);
+            }
         });
     }
 }

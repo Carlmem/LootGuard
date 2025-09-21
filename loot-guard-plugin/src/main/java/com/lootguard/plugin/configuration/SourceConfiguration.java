@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.logging.Level;
 
 @RequiredArgsConstructor
@@ -32,17 +33,19 @@ public class SourceConfiguration extends AbstractModule {
         if (!configFile.exists()) {
             try {
                 configFile.createNewFile();
-                this.config = YamlConfiguration.loadConfiguration(configFile);
-
-                this.config.set("protected-time", 10);
-                this.config.set("loot-permission", "loot.guard.permission");
-
-                this.config.save(configFile);
             } catch (IOException e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Could not create config.yml", e);
             }
-        } else {
-            this.config = YamlConfiguration.loadConfiguration(configFile);
+        }
+
+        this.config = YamlConfiguration.loadConfiguration(configFile);
+        this.config.set("protected-time", this.config.get("protected-time") == null ? 10 : this.config.get("protected-time"));
+        this.config.set("loot-permission", this.config.get("loot-permission") == null ? "loot.guard.permission" : this.config.get("loot-permission"));
+        this.config.set("glowing", this.config.get("glowing") == null ? true : this.config.get("glowing"));
+        try {
+            this.config.save(configFile);
+        } catch (IOException e) {
+            Bukkit.getLogger().log(Level.SEVERE, "Could not save config.yml", e);
         }
     }
 
@@ -51,7 +54,8 @@ public class SourceConfiguration extends AbstractModule {
     private ConfigDto configDto() {
         return new ConfigDto(
                 this.config.getInt("protected-time"),
-                this.config.getString("loot-permission")
+                this.config.getString("loot-permission"),
+                this.config.getBoolean("glowing")
         );
     }
 }
