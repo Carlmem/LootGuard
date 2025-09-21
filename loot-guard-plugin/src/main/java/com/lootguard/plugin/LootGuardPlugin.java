@@ -4,10 +4,10 @@ import com.google.inject.Guice;
 import com.lootguard.api.LootGuardApiProvider;
 import com.google.inject.Injector;
 import com.lootguard.plugin.configuration.*;
-import com.rampagemc.ramplagelibrary.bootstrap.BootstrapGuiceConfiguration;
-import com.rampagemc.ramplagelibrary.bootstrap.BootstrapService;
-import com.rampagemc.ramplagelibrary.event.EventGuiceConfiguration;
-import com.rampagemc.ramplagelibrary.scheduler.SchedulerGuiceConfiguration;
+import dev.carlmem.luminaslib.bootstrap.BootstrapGuiceConfiguration;
+import dev.carlmem.luminaslib.bootstrap.BootstrapService;
+import dev.carlmem.luminaslib.event.EventGuiceConfiguration;
+import dev.carlmem.luminaslib.scheduler.SchedulerGuiceConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings("unused")

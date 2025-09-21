@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 
     maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+
+    maven {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
@@ -24,34 +28,30 @@ repositories {
 
     maven { url "https://repo.dmulloy2.net/repository/public/" }
     maven {
-        url "https://" + (System.getenv('CI_SERVER_HOST') ?: "gitlab.zendal.dev") + "/api/v4/groups/41/-/packages/maven"
-        name "GitLab"
-        //noinspection GroovyAssignabilityCheck
-        credentials(HttpHeaderCredentials) {
-            name = 'Private-Token'
-            value = findProperty("gitlab.rampage.token") ?: System.getenv("GITLAB_TOKEN_READ_CI")
-        }
-        authentication {
-            //noinspection GroovyAssignabilityCheck
-            header(HttpHeaderAuthentication)
+        url = uri("https://maven.pkg.github.com/Carlmem/LuminasLib")
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
         }
     }
+
 }
 
 ext {
     fasterXmlVersion = '2.14.2'
     grpcVersion = '1.57.1'
-    rampageLibrary = '1.5.6'
+    luminasLib = '0.0.1'
     glowingVersion = "1.4.3"
 }
 
 dependencies {
-    compileOnly "io.papermc.paper:paper-api:$paperVersion"
+    //compileOnly "io.papermc.paper:paper-api:$paperVersion"
+    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
 
     implementation "fr.skytasul:glowingentities:$glowingVersion"
     implementation "com.google.inject:guice:$guiceVersion"
     implementation project(":loot-guard-api")
-    implementation "com.rampagemc:rampage-library:$rampageLibrary"
+    implementation "dev.carlmem:luminaslib:$luminasLib"
 
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
