@@ -25,7 +25,8 @@ public class LootGuardPlugin extends JavaPlugin implements LootGuardApiProvider 
                 new BootstrapGuiceConfiguration(this),
                 new EventGuiceConfiguration(this),
                 new SchedulerGuiceConfiguration(this),
-                new SourceConfiguration(this)
+                new SourceConfiguration(this),
+                new GlowingConfiguration(this)
         );
 
         this.bootstrapService = this.injector.getInstance(BootstrapService.class);
