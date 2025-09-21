@@ -3,7 +3,7 @@ package com.lootguard.plugin.listener;
 import com.lootguard.plugin.model.ConfigDto;
 import com.lootguard.plugin.repository.loot.LootOwnerRepository;
 import com.google.inject.Inject;
-import com.rampagemc.ramplagelibrary.event.annotation.EventListener;
+import dev.carlmem.luminaslib.event.annotation.EventListener;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

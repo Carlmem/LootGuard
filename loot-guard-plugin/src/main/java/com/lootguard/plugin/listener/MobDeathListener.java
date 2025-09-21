@@ -2,7 +2,7 @@ package com.lootguard.plugin.listener;
 
 import com.lootguard.plugin.service.loot.LootDivisionService;
 import com.google.inject.Inject;
-import com.rampagemc.ramplagelibrary.event.annotation.EventListener;
+import dev.carlmem.luminaslib.event.annotation.EventListener;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

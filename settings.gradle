@@ -1,13 +1,3 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven {
-            url "https://" + (System.getenv('CI_SERVER_HOST') ?: "gitlab.zendal.dev") + "/api/v4/groups/182/-/packages/maven"
-            name "Zendal GitLab"
-        }
-    }
-}
-
 rootProject.name = 'LootGuard'
 
 include 'loot-guard-api'

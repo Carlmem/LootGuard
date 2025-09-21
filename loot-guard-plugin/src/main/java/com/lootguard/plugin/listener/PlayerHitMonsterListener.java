@@ -3,7 +3,7 @@ package com.lootguard.plugin.listener;
 import com.lootguard.plugin.model.PlayerLastHitKey;
 import com.lootguard.plugin.repository.damage.PlayerDamageMobRepository;
 import com.google.inject.Inject;
-import com.rampagemc.ramplagelibrary.event.annotation.EventListener;
+import dev.carlmem.luminaslib.event.annotation.EventListener;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Damageable;

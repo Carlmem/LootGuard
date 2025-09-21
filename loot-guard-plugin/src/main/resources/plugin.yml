@@ -1,5 +1,5 @@
 name: LootGuard
 version: '${version}'
 main: com.lootguard.plugin.LootGuardPlugin
-api-version: 1.21
+api-version: 1.19
 depend: []

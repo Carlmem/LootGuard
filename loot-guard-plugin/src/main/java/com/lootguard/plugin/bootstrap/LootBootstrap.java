@@ -2,9 +2,9 @@ package com.lootguard.plugin.bootstrap;
 
 import com.google.inject.Injector;
 import com.lootguard.plugin.scheduler.LootScheduler;
-import com.rampagemc.ramplagelibrary.bootstrap.BootstrapInitializer;
-import com.rampagemc.ramplagelibrary.bootstrap.annotation.Bootstrap;
-import com.rampagemc.ramplagelibrary.scheduler.Scheduler;
+import dev.carlmem.luminaslib.bootstrap.BootstrapInitializer;
+import dev.carlmem.luminaslib.bootstrap.annotation.Bootstrap;
+import dev.carlmem.luminaslib.scheduler.Scheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
